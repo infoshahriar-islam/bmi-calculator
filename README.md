@@ -1,1 +1,1 @@
-# health-log
+# BMI Calculator
