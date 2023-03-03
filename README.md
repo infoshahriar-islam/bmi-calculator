@@ -14,9 +14,9 @@ You will need a web browser to run the application. No other software or librari
 To get started, simply clone or download the repository to your local machine. You can do this using the command:
 
 
-'''
+```
 git clone https://github.com/infoshahriar-islam/bmi-calculator.git
-'''
+```
 
 Then, open the index.html file in your web browser to run the application.
 
