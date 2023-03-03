@@ -29,4 +29,4 @@ To use the BMI Calculator, simply enter your weight and height using the provide
 * JavaScript
 
 ## Authors
-Shahriar Islam
+Shahriar Islam - A Cyber Entrepreneur and Journalist
