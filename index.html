@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<title>BMI Calculator</title>	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<style>
+
+		/* Styles for the BMI calculator */
+
+body {
+
+	font-family: Arial, sans-serif;
+
+	font-size: 1rem;
+
+	line-height: 1.5;
+
+	color: #333;
+
+	background-color: #f8f8f8;
+
+	margin: 0;
+
+	padding: 0;
+
+}
+
+.container {
+
+	max-width: 960px;
+
+	margin: 0 auto;
+
+	padding: 1rem;
+
+}
+
+h1 {
+
+	font-size: 2rem;
+
+	margin: 0;
+
+	padding: 0.5rem 0;
+
+	text-align: center;
+
+}
+
+form {
+
+	max-width: 400px;
+
+	margin: 0 auto;
+
+	padding: 1rem;
+
+	background-color: #fff;
+
+	border: 1px solid #ccc;
+
+	border-radius: 0.25rem;
+
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+form label {
+
+	display: block;
+
+	margin-bottom: 0.5rem;
+
+	font-weight: bold;
+
+}
+
+form input[type="number"] {
+
+	display: block;
+
+	width: 100%;
+
+	padding: 0.5rem;
+
+	margin-bottom: 1rem;
+
+	font-size: 1rem;
+
+	line-height: 1.5;
+
+	color: #555;
+
+	background-color: #fff;
+
+	background-clip: padding-box;
+
+	border: 1px solid #ccc;
+
+	border-radius: 0.25rem;
+
+	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+}
+
+form input[type="number"]:focus {
+
+	border-color: #4d90fe;
+
+	box-shadow: 0 0 0 0.2rem rgba(77, 144, 254, 0.25);
+
+}
+
+form button[type="submit"] {
+
+	display: block;
+
+	margin-top: 1rem;
+
+	padding: 0.5rem 1rem;
+
+	font-size: 1rem;
+
+	font-weight: bold;
+
+	line-height: 1.5;
+
+	color: #fff;
+
+	background-color: #007bff;
+
+	border: 1px solid #007bff;
+
+	border-radius: 0.25rem;
+
+	cursor: pointer;
+
+	transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+
+}
+
+form button[type="submit"]:hover {
+
+	background-color: #0069d9;
+
+	border-color: #0062cc;
+
+}
+
+.result {
+
+	margin-top: 1rem;
+
+	font-size: 1rem;
+
+	line-height: 1.5;
+
+	text-align: center;
+
+	color: #555;
+
+}
+
+  
+
+/* Styles for larger screens */
+
+@media screen and (min-width: 600px) {
+
+	form {
+
+		max-width: 600px;
+
+	}
+
+  
+
+	form label,
+
+	form input[type="number"] {
+
+		font-size: 1.2rem;
+
+	}
+
+  
+
+	.result {
+
+		font-size: 1.2rem;
+
+	}
+
+  
+
+	form button[type="submit"] {
+
+		font-size: 1.2rem;
+
+		padding: 0.5rem 2rem;
+
+	}
+
+}
+
+/* Styles for screens larger than 768px */
+
+@media only screen and (min-width: 768px) {
+
+  /* Center the form on the page */
+
+  form {
+
+    max-width: 600px;
+
+    margin: 0 auto;
+
+  }
+
+  /* Increase the font size of the form inputs */
+
+  form label,
+
+  form input[type="number"] {
+
+    font-size: 1.2rem;
+
+  }
+
+  /* Increase the font size of the result message */
+
+  .result {
+
+    font-size: 1.2rem;
+
+  }
+
+  /* Increase the size of the submit button */
+
+  form button[type="submit"] {
+
+    font-size: 1.2rem;
+
+    padding: 0.5rem 2rem;
+
+  }
+
+}
+
+	</style>
+
+</head>
+
+<body>
+
+	<form method="post">
+
+		<label for="height">Height (cm)</label>
+
+		<input type="text" name="height" id="height" required>
+
+		<label for="weight">Weight (kg)</label>
+
+		<input type="text" name="weight" id="weight" required>
+
+		<input type="submit" value="Calculate BMI">
+
+	</form>
+
+	<div class="result">
+
+		<!-- Result will be displayed here -->
+
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<script>
+
+	$(document).ready(function() {
+
+	$("form").submit(function(e) {
+
+		e.preventDefault(); // prevent the form from submitting
+
+		// get the user input values
+
+		var height = parseFloat($("#height").val());
+
+		var weight = parseFloat($("#weight").val());
+
+		// calculate the BMI
+
+		var bmi = weight / ((height / 100) * (height / 100));
+
+		// round the BMI to 1 decimal place
+
+		bmi = bmi.toFixed(1);
+
+		// display the BMI result
+
+		$(".result").html("Your BMI is " + bmi);
+
+		// determine if the person is healthy or not
+
+		if (bmi < 18.5) {
+
+			$(".result").append("<br>You are underweight. Please consult with a doctor to ensure you are healthy.");
+
+		} else if (bmi >= 18.5 && bmi <= 24.9) {
+
+			$(".result").append("<br>You are within a healthy weight range.");
+
+		} else if (bmi >= 25 && bmi <= 29.9) {
+
+			$(".result").append("<br>You are overweight. Please consider making lifestyle changes to improve your health.");
+
+		} else if (bmi >= 30) {
+
+			$(".result").append("<br>You are obese. Please consult with a doctor to ensure you are healthy and consider making lifestyle changes to improve your health.");
+
+		}
+
+	});
+
+});
+
+	</script>
+
+</body>
+
+</html>
